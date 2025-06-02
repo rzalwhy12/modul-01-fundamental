@@ -1,0 +1,22 @@
+
+
+<script>
+
+/*
+Write a code to convert days to years, months and days (Notes: 1 year : 365 days, 1 month : 30 days).
+○ Example : 400 days → 1 year, 1 month, 5 days
+○ Example: 366 days → 1 year, 0 month, 1 day
+*/
+
+
+    //Input
+    var INPUT = prompt("Masukan Jumlah Hari")
+
+    //Proses
+    const Years = (Math. floor(INPUT/365));
+    const months = (Math. floor((INPUT%365)/30));
+    const Day = INPUT-((Years*365)+(months*30));
+    
+    //outout
+    alert("Berarti "+ INPUT + " Hari " + "Sama Dengan "+ Years+" Years "+months+" Month "+Day+(" Day ") );
+</script>

@@ -1,0 +1,24 @@
+<script>
+/*
+Write a code to get difference between dates in days.
+○ Example : date1 = 2022-01-20, date2 = 2022-01-22
+○ Output : 2
+*/
+
+//Input
+let datee1 = prompt("Input date 1");
+let datee2 = prompt("input date 2");
+
+let date1 = new Date(datee1);
+let date2 = new Date(datee2);
+//Proses
+const diffTime = Math.abs(date2 - date1);
+const difDay = Math.ceil(diffTime / (1000*60*60*24))
+
+//output
+alert("selisih hari dari tanggal " + (date1.toLocaleDateString("id")) + " & " +(date2.toLocaleDateString("id"))+ " adalah "+difDay+" Day ")
+
+
+</script>
+
+
