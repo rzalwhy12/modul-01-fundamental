@@ -21,7 +21,7 @@ Write a code to check whether the number is prime number or not
 ○ Example: 6 → 6 is not a prime number
 */
 
-let angkka : number = 3;
+let angkka : number = 15;
 let pembagi : number = 0;
 let ppp : string ="";
 
@@ -37,6 +37,7 @@ if (pembagi == 2) {
 }
 console.log(ppp);
 
+
 /*
 Write a code to find the sum of the numbers 1 to N
 ○ Example: 5 → 1 + 2 + 3 + 4 + 5 = 15
@@ -45,7 +46,7 @@ Write a code to find the sum of the numbers 1 to N
 
 
 let sum = 0;
-const N : number = 9;
+const N : number = 3;
 let pppp : string = "";
 
 for (let i: number = 1; i <= N; i++) {
@@ -89,7 +90,7 @@ for (let i: number = 1; i <= angkaaa; i++) {
     }
     }
 
-console.log(`${pq} = ${factorial}`);
+console.log(`${pq} 1 = ${factorial}`);
 
 /*
 Write a code to print the first N fibonacci numbers
