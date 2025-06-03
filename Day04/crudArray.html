@@ -1,0 +1,115 @@
+<script>
+function menuProduk() {
+  // PRODUK AWAL
+let produk = [
+    "1. Gitar",
+    "2. Piano",
+    "3. Drum",
+    "4. Bass",
+    "5. Violin"
+];
+ // MENAMPILKAN MENU UTAMA
+function tampilkanMenuUtama() {
+    let menuString = `
+    1. Daftar Produk
+    2. Tambah Produk
+    3. Hapus Produk
+    4. update produk
+    5. Keluar
+    `;
+
+    let pilihan = prompt("==Daftar Produk Toko musik== \n" + menuString);
+    
+    switch (pilihan) {
+    case "1":
+        daftarProduk();
+        break;
+    case "2":
+        tambahProduk();
+        break;
+    case "3":
+        hapusProduk();
+        break;
+    case "4":
+        updateProduk();
+        break;
+    case "5":
+        alert("Terima kasih mas atau mbak ,Sehat selalu!");
+        break;
+    default:
+        alert("Pilihan tidak valid! Silakan pilih lagi.");
+        tampilkanMenuUtama();
+    }
+}
+// DAFTAR PRODUK
+function daftarProduk() {
+    let menuString = produk.join("\n");
+    alert("== Daftar Produk ==\n" + menuString);
+    //kembali ke menu utama
+    tampilkanMenuUtama(); 
+}
+// TAMBAH PRODUK
+function tambahProduk() {
+    let produkBaru = prompt("Masukkan nama produk baru:");
+
+    if (produkBaru !== null && produkBaru !== "") {
+    produk.push(`${produk.length + 1}. ${produkBaru}`);
+    alert("Produk berhasil ditambahkan!");
+    } else {
+    alert("Produk ini ga bisa, pembaruan dibatalkan.");
+    }
+    //Kembali ke menu utama
+    tampilkanMenuUtama(); 
+}
+
+  // UPDATE PRODUK
+function updateProduk() {
+    let menuString = produk.join("\n");
+    let pilihan = prompt("Daftar Produk untuk diperbarui:\n" + menuString + "\n\nMasukkan nomor produk yang ingin diubah:");
+
+    if (pilihan !== null && !isNaN(pilihan) && pilihan >= 1 && pilihan <= produk.length) {
+    let produkBaru = prompt("Masukkan nama produk baru untuk nomor " + pilihan + ":");
+    
+    if (produkBaru !== null && produkBaru !== "") {
+        produk[pilihan - 1] = `${pilihan}. ${produkBaru}`;
+        alert("Produk berhasil diubah!");
+    } else {
+        alert("Produk tidak valid, pembaruan dibatalkan.");
+    }
+    } else {
+    alert("Nomor produk tidak valid, pilih lagi.");
+    }
+    //kembali ke menu
+    tampilkanMenuUtama();
+}
+
+  // HAPUS PRODUK
+function hapusProduk() {
+    let menuString = produk.join("\n");
+    let pilihan = prompt("Daftar Produk untuk Hapus:\n" + menuString + "\n\nMasukkan nomor produk yang ingin dihapus:");
+
+    if (pilihan !== null && !isNaN(pilihan) && pilihan >= 1 && pilihan <= produk.length) {
+    if (`${pilihan}`) {
+        produk.splice(pilihan - 1, 1);
+        alert("Produk berhasil dihapus!");
+        for (let i = 0; i < produk.length; i++) {
+        produk[i] = `${i + 1}. ${produk[i].split('. ')[1]}`;
+        
+        }
+    } else {
+        alert("Penghapusan dibatalkan.");
+    }
+    } else {
+    alert("Nomor produk tidak ada bosq, pilih lagi.");
+    }
+
+    // kembali ke menu utama
+    tampilkanMenuUtama();
+}
+
+tampilkanMenuUtama();
+}
+
+menuProduk();
+
+</script>
