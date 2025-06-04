@@ -1,16 +1,14 @@
 <script>
-function menuProduk() {
-  // PRODUK AWAL
-let produk = [
-    "1. Gitar",
-    "2. Piano",
-    "3. Drum",
-    "4. Bass",
-    "5. Violin"
-];
- // MENAMPILKAN MENU UTAMA
-function tampilkanMenuUtama() {
-    let menuString = `
+    // PRODUK AWAL
+    let produk = [
+        ["gitar", 1000000, 4],
+        ["piano", 3000000, 8],
+        ["drum", 8000000, 4]
+    ];
+
+    // MENAMPILKAN MENU UTAMA
+    function tampilkanMenuUtama() {
+        let menuString = `
     1. Daftar Produk
     2. Tambah Produk
     3. Hapus Produk
@@ -18,98 +16,178 @@ function tampilkanMenuUtama() {
     5. Keluar
     `;
 
-    let pilihan = prompt("==Daftar Produk Toko musik== \n" + menuString);
-    
-    switch (pilihan) {
-    case "1":
-        daftarProduk();
-        break;
-    case "2":
-        tambahProduk();
-        break;
-    case "3":
-        hapusProduk();
-        break;
-    case "4":
-        updateProduk();
-        break;
-    case "5":
-        alert("Terima kasih mas atau mbak ,Sehat selalu!");
-        break;
-    default:
-        alert("Pilihan tidak valid! Silakan pilih lagi.");
+        let pilihan = prompt("==Daftar Produk Toko musik== \n" + menuString);
+
+        switch (pilihan) {
+            case "1":
+                daftarProduk();
+                break;
+            case "2":
+                tambahProduk();
+                break;
+            case "3":
+                hapusProduk();
+                break;
+            case "4":
+                updateProduk();
+                break;
+            case "5":
+                alert("Terima kasih mas atau mbak ,Sehat selalu!");
+                break;
+            default:
+                alert("Pilihan tidak valid! Silakan pilih lagi.");
+                tampilkanMenuUtama();
+        }
+    }
+
+    // DAFTAR PRODUK
+    function daftarProduk() {
+        if (produk.length === 0) {
+            alert("== Daftar Produk ==\nBelum ada produk dalam daftar.");
+        } else {
+            let daftarString = "== Daftar Produk ==\n";
+            for (let i = 0; i < produk.length; i++) {
+                daftarString +=
+                    `${i + 1}. Produk: ${produk[i][0]}, Harga: Rp ${produk[i][1].toLocaleString()}, Stok: ${produk[i][2]}\n`;
+            }
+            alert(daftarString);
+        }
+        //kembali ke menu utama
         tampilkanMenuUtama();
     }
-}
-// DAFTAR PRODUK
-function daftarProduk() {
-    let menuString = produk.join("\n");
-    alert("== Daftar Produk ==\n" + menuString);
-    //kembali ke menu utama
-    tampilkanMenuUtama(); 
-}
-// TAMBAH PRODUK
-function tambahProduk() {
-    let produkBaru = prompt("Masukkan nama produk baru:");
-
-    if (produkBaru !== null && produkBaru !== "") {
-    produk.push(`${produk.length + 1}. ${produkBaru}`);
-    alert("Produk berhasil ditambahkan!");
-    } else {
-    alert("Produk ini ga bisa, pembaruan dibatalkan.");
-    }
-    //Kembali ke menu utama
-    tampilkanMenuUtama(); 
-}
-
-  // UPDATE PRODUK
-function updateProduk() {
-    let menuString = produk.join("\n");
-    let pilihan = prompt("Daftar Produk untuk diperbarui:\n" + menuString + "\n\nMasukkan nomor produk yang ingin diubah:");
-
-    if (pilihan !== null && !isNaN(pilihan) && pilihan >= 1 && pilihan <= produk.length) {
-    let produkBaru = prompt("Masukkan nama produk baru untuk nomor " + pilihan + ":");
-    
-    if (produkBaru !== null && produkBaru !== "") {
-        produk[pilihan - 1] = `${pilihan}. ${produkBaru}`;
-        alert("Produk berhasil diubah!");
-    } else {
-        alert("Produk tidak valid, pembaruan dibatalkan.");
-    }
-    } else {
-    alert("Nomor produk tidak valid, pilih lagi.");
-    }
-    //kembali ke menu
-    tampilkanMenuUtama();
-}
-
-  // HAPUS PRODUK
-function hapusProduk() {
-    let menuString = produk.join("\n");
-    let pilihan = prompt("Daftar Produk untuk Hapus:\n" + menuString + "\n\nMasukkan nomor produk yang ingin dihapus:");
-
-    if (pilihan !== null && !isNaN(pilihan) && pilihan >= 1 && pilihan <= produk.length) {
-    if (`${pilihan}`) {
-        produk.splice(pilihan - 1, 1);
-        alert("Produk berhasil dihapus!");
-        for (let i = 0; i < produk.length; i++) {
-        produk[i] = `${i + 1}. ${produk[i].split('. ')[1]}`;
-        
+    // TAMBAH PRODUK
+    function tambahProduk() {
+        let namaProdukBaru = prompt("Masukkan nama produk baru:");
+        // Validasi input nama produk
+        if (namaProdukBaru === null || namaProdukBaru.trim() === "") {
+            alert("Nama produk tidak boleh kosong. Penambahan dibatalkan.");
+            tampilkanMenuUtama(); // Kembali ke menu utama
+            return; // Hentikan eksekusi fungsi
         }
-    } else {
-        alert("Penghapusan dibatalkan.");
-    }
-    } else {
-    alert("Nomor produk tidak ada bosq, pilih lagi.");
+
+        let hargaProdukBaru = parseFloat(prompt(`Masukkan harga untuk ${namaProdukBaru}:`));
+        // Validasi input harga
+        if (isNaN(hargaProdukBaru) || hargaProdukBaru <= 0) {
+            alert("Harga tidak valid. Penambahan dibatalkan.");
+            tampilkanMenuUtama();
+            return;
+        }
+
+        let stokProdukBaru = parseInt(prompt(`Masukkan stok untuk ${namaProdukBaru}:`));
+        // Validasi input stok
+        if (isNaN(stokProdukBaru) || stokProdukBaru < 0) {
+            alert("Stok tidak valid. Penambahan dibatalkan.");
+            tampilkanMenuUtama();
+            return;
+        }
+
+        // Menambahkan produk baru ke array produk
+        produk.push([namaProdukBaru, hargaProdukBaru, stokProdukBaru]);
+        alert(`Produk "${namaProdukBaru}" berhasil ditambahkan!`);
+
+        //Kembali ke menu utama
+        tampilkanMenuUtama();
     }
 
-    // kembali ke menu utama
+
+    // UPDATE PRODUK
+    function updateProduk() {
+        if (produk.length === 0) {
+            alert("Belum ada produk untuk diupdate.");
+            tampilkanMenuUtama();
+            return;
+        }
+
+        let daftarString = "== Pilih Produk untuk Diupdate ==\n";
+        for (let i = 0; i < produk.length; i++) {
+            daftarString +=
+                `${i + 1}. Nama: ${produk[i][0]}, Harga: Rp ${produk[i][1].toLocaleString()}, Stok: ${produk[i][2]}\n`;
+        }
+
+        const inputIndex = prompt(daftarString + "\nMasukkan nomor produk yang ingin diubah:");
+        const index = parseInt(inputIndex) - 1; // Konversi ke indeks array (dimulai dari 0)
+
+        if (isNaN(index) || index < 0 || index >= produk.length) {
+            alert("Nomor produk tidak valid.");
+            tampilkanMenuUtama();
+            return;
+        }
+
+        const [namaProdukLama, hargaLama, stokLama] = produk[index];
+
+        let pilihanUpdate = prompt(
+            `Anda ingin mengupdate apa untuk "${namaProdukLama}"?\n1. Nama\n2. Harga\n3. Stok\n4. Batal`);
+
+        switch (pilihanUpdate) {
+            case "1":
+                const namaBaru = prompt(`Masukkan nama produk baru (asalnya: ${namaProdukLama}):`, namaProdukLama);
+                if (namaBaru !== null && namaBaru.trim() !== "") {
+                    produk[index][0] = namaBaru;
+                    alert("Nama produk berhasil diubah.");
+                } else {
+                    alert("Nama produk tidak boleh kosong. Pembaharuan dibatalkan.");
+                }
+                break;
+            case "2":
+                const hargaBaruInput = prompt(
+                    `Masukkan harga produk baru (asalnya: ${hargaLama.toLocaleString()}):`, hargaLama);
+                const hargaBaru = parseFloat(hargaBaruInput);
+                if (!isNaN(hargaBaru) && hargaBaru >= 0) {
+                    produk[index][1] = hargaBaru;
+                    alert("Harga produk berhasil diubah.");
+                } else {
+                    alert("Harga tidak valid. Pembaharuan dibatalkan.");
+                }
+                break;
+            case "3":
+                const stokBaruInput = prompt(`Masukkan stok produk baru (asalnya: ${stokLama}):`, stokLama);
+                const stokBaru = parseInt(stokBaruInput);
+                if (!isNaN(stokBaru) && stokBaru >= 0) {
+                    produk[index][2] = stokBaru;
+                    alert("Stok produk berhasil diubah.");
+                } else {
+                    alert("Stok tidak valid. Pembaharuan dibatalkan.");
+                }
+                hapusProduk();
+                break;
+            case "4":
+                alert("Pembaharuan dibatalkan.");
+                break;
+            default:
+                alert("Pilihan tidak valid. Pembaharuan dibatalkan.");
+                break;
+        }
+
+        //kembali ke menu
+        tampilkanMenuUtama();
+    }
+
+    // HAPUS PRODUK
+function hapusProduk() {
+    if (produk.length === 0) {
+        alert("== Daftar Produk ==\nBelum ada produk untuk dihapus.");
+        tampilkanMenuUtama();
+        return;
+    }
+
+    let daftarString = "== Pilih Produk untuk Dihapus ==\n";
+    for (let i = 0; i < produk.length; i++) {
+        daftarString += `${i + 1}. Produk: ${produk[i][0]}, Harga: Rp ${produk[i][1].toLocaleString()}, Stok: ${produk[i][2]}\n`;
+    }
+
+    const inputIndex = prompt(daftarString + "\nMasukkan nomor produk yang ingin dihapus:");
+    const index = parseInt(inputIndex) - 1;
+
+    if (isNaN(index) || index < 0 || index >= produk.length) {
+        alert("Nomor produk tidak valid.");
+        tampilkanMenuUtama();
+        return;
+    }
+
+    produk.splice(index, 1);
+    alert("Produk berhasil dihapus!");
+
     tampilkanMenuUtama();
 }
-
-tampilkanMenuUtama();
-}
-
-menuProduk();
-
+        tampilkanMenuUtama();
 </script>

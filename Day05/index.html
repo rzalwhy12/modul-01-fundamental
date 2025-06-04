@@ -1,0 +1,47 @@
+<script>
+    const database = ["kaos","jaket","Celana"];
+
+    function lihatData(){
+        //1.Menyiapkan penampung output tampilan data
+        let daftar ="=== Daftar Data ===\n";
+    for(let index=0;index<database.length;index++){
+        //2.Mengakses data didalam array satu per satu
+        const value = database[index];
+        //3.Menambahkan tiap data kedalam variable output
+        daftar += `${index+1}. ${value}\n`
+    }
+        //4.Menampilkan data output
+        alert(daftar);
+    }
+
+    function tambahData(){
+        //1.Menerima input data baru
+        const nama = prompt("Masukan nama data baru :");
+        //2.Menambahkan data kedalam database
+        database.push(nama);
+        alert(`penambahan data ${nama} berhasil`);
+    }
+    
+    do{
+    const menu = prompt(`== Menu Manaement Data ==
+    1. Lihat data
+    2. Tambah data
+    3. Perbarui data
+    4. Hapus data
+    5. Keluar
+    
+    Masukan nomor menu yang dipilih :`);
+
+    if (menu === "1") {
+        lihatData();
+    } else if (menu ==="2"){
+        tambahData();
+    } else if (menu ==="3"){
+        //perbaruiData();
+    } else if (menu ==="4"){
+        //HapusData();
+    } else{
+        break;
+    }
+}while (true);
+</script>
