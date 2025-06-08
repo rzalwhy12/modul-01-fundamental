@@ -1,0 +1,88 @@
+<script>
+    // Display welcome 
+    function masukgame() {
+        let wellcome = "Welcome to the SUIT game!";
+        alert(wellcome);
+    }
+    masukgame();
+
+    // Function to randomly 
+    function pilihankomputer() {
+        const pilihan = ["rock🗿", "paper📜", "scissors✂️"];
+        const randomIndex = Math.floor(Math.random() * pilihan.length);
+        return pilihan[randomIndex];
+    }
+
+    // Function to determine the winner
+    function theWinner(playerChoice, computerChoice) {
+        if (playerChoice === computerChoice) {
+            return "Tie🙈";
+        } else if (
+            (playerChoice === "rock🗿" && computerChoice === "scissors✂️") ||
+            (playerChoice === "scissors✂️" && computerChoice === "paper📜") ||
+            (playerChoice === "paper📜" && computerChoice === "rock🗿")
+        ) {
+            return "Player Wins🏆";
+        } else {
+            return "Computer Wins🏆";
+        }
+    }
+
+    // Function to play a single round
+    function playRound(playerChoice) {
+        const computerChoice = pilihankomputer();
+        const result = theWinner(playerChoice, computerChoice);
+        return `Player😇 chose ${playerChoice}, Computer💻 chose ${computerChoice}.\n ${result}`;
+    }
+
+    let gameHistory = [];
+
+    // Function to show the full history in an alert
+    function showHistory() {
+        let historyMessage = "Game History:\n";
+        if (gameHistory.length === 0) {
+            historyMessage = "No game history available.";
+        } else {
+            gameHistory.forEach((entry, index) => {
+                historyMessage += `${index + 1}. ${entry}\n`;
+            });
+        }
+        alert(historyMessage);
+    }
+
+    // Game loop
+    do {
+        const pilihan = prompt(`
+        1. Rock 🗿
+        2. Paper 📜
+        3. Scissors ✂️
+        \nPlease enter the number for your choice (1, 2, or 3):`);
+
+        let result = "";
+        if (pilihan === "1") {
+            result = playRound("rock🗿");
+        } else if (pilihan === "2") {
+            result = playRound("paper📜");
+        } else if (pilihan === "3") {
+            result = playRound("scissors✂️");
+        } else {
+            alert("Invalid choice, please choose a valid option.");
+        }
+
+        // Store the round result in the game history
+        gameHistory.push(result);
+
+        // Show the result of the match
+        alert(result);
+
+        // Show the full history
+        showHistory();
+
+        const tryAgain = confirm("play again?");
+        if (!tryAgain) {
+            alert("Thank you, have a nice day!🗿🗿🗿");
+            break; // 
+        }
+
+    } while (true);
+</script>
