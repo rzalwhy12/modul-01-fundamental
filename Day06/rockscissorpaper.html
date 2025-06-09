@@ -14,17 +14,18 @@
     }
 
     // Function to determine the winner
+    // Function to determine the winner
     function theWinner(playerChoice, computerChoice) {
         if (playerChoice === computerChoice) {
-            return "Tie🙈";
+            return "DRAW";
         } else if (
             (playerChoice === "rock🗿" && computerChoice === "scissors✂️") ||
             (playerChoice === "scissors✂️" && computerChoice === "paper📜") ||
             (playerChoice === "paper📜" && computerChoice === "rock🗿")
         ) {
-            return "Player Wins🏆";
+            return "WIN";
         } else {
-            return "Computer Wins🏆";
+            return "LOSE";
         }
     }
 
@@ -35,18 +36,15 @@
         return `Player😇 chose ${playerChoice}, Computer💻 chose ${computerChoice}.\n ${result}`;
     }
 
-    let gameHistory = [];
+    let gameHistory = {
+        WIN: 0,
+        DRAW: 0,
+        LOSE: 0
+    };
 
     // Function to show the full history in an alert
     function showHistory() {
-        let historyMessage = "Game History:\n";
-        if (gameHistory.length === 0) {
-            historyMessage = "No game history available.";
-        } else {
-            gameHistory.forEach((entry, index) => {
-                historyMessage += `${index + 1}. ${entry}\n`;
-            });
-        }
+        let historyMessage = `Game History:\nWIN: ${gameHistory.WIN}\nDRAW: ${gameHistory.DRAW}\nLOSE: ${gameHistory.LOSE}`;
         alert(historyMessage);
     }
 
@@ -66,11 +64,18 @@
         } else if (pilihan === "3") {
             result = playRound("scissors✂️");
         } else {
-            alert("Invalid choice, please choose a valid option.");
+            alert("Invalid choice");
         }
 
-        // Store the round result in the game history
-        gameHistory.push(result);
+        // Update the game history count based on the result
+        if (result.includes("WIN")) {
+            gameHistory.WIN++;
+        } else if (result.includes("DRAW")) {
+            gameHistory.DRAW++;
+        } else {
+            gameHistory.LOSE++;
+        }
+
 
         // Show the result of the match
         alert(result);
