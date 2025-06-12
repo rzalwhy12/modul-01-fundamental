@@ -1,5 +1,5 @@
 
-import { testModule } from "./testFunction.ts";
+//import { testModule } from "./testFunction"
 
 // Synchronous : kode dieksekusi berdasarkan urutan perintah
 
@@ -133,13 +133,13 @@ function checkCoin() {
     })
 }
 
-// checkCoin()
-//     .then((response) => {
-//         console.log('Hasil pelemparan koin ketika sukses : ', response)
-//     })
-//     .catch((error) => {
-//         console.log('Hasil pelemparan koin ketika gagal : ', error)
-//     })
+checkCoin()
+    .then((response) => {
+        console.log('Hasil pelemparan koin ketika sukses : ', response)
+    })
+    .catch((error) => {
+        console.log('Hasil pelemparan koin ketika gagal : ', error)
+    })
 
 // Async Await 
 
@@ -181,5 +181,5 @@ async function serveCake(): Promise<void> {
     }
 }
 
-// serveCake()
-testModule() // untuk menjalankan fungsi yang diimport dari testFunction.ts
+serveCake()
+//testModule() // untuk menjalankan fungsi yang diimport dari testFunction.ts
