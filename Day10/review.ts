@@ -139,34 +139,34 @@ console.log(data["age"]);
 console.log(data);
 
 // Inheritance : pewarisan data dari class utama. supaya class turunan memiliki property dari class utama
-class Employee extends Human {
-position: string;
-salary: number;
+// class Employee extends Human {
+// position: string;
+// salary: number;
 
-constructor(
-    _name: string,
-    _age: number,
-    _gender: " Male " | "Female",
-    position: string,
-    salary: number
-) {
-    super(_name, _age, _gender);
-    this.position = position;
-    this.salary = salary;
-}
-}
+// constructor(
+//     _name: string,
+//     _age: number,
+//     _gender: " Male " | "Female",
+//     position: string,
+//     salary: number
+// ) {
+//     super(_name, _age, _gender);
+//     this.position = position;
+//     this.salary = salary;
+// }
+// }
 
-const employee1: Employee = new Employee(
-"Irfan",
-15,
-" Male ",
-"Front-end",
-5000000
-);
+// const employee1: Employee = new Employee(
+// "Irfan",
+// 15,
+// " Male ",
+// "Front-end",
+// 5000000
+// );
 
-console.log(employee1);
+// console.log(employee1);
 
-// Destructure : mengeluarkan nilai dari property object menjadi variable yang beridiri sendiri
-const { age: umur, isLive, gender } = employee1;
-console.log(umur);
-console.log(gender);
+ // Destructure : mengeluarkan nilai dari property object menjadi variable yang beridiri sendiri
+// const { age: umur, isLive, gender } = employee1;
+// console.log(umur);
+// console.log(gender);
